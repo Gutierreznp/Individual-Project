@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(85, 95, 88, 0.708);
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 25px;
+    cursor: pointer;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    font-style: oblique;
+    color: black;
+    text-align: center;
+    text-shadow: 0 2px 2px white;
+}
+
+.container:hover {
+    transform: scale(1.05);
+}
+
+.img {
+    box-shadow: 0 5px 5px white;
+}

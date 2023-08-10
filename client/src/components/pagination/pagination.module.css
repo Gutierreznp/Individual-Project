@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    align-items: center;
+    background-color: rgba(113, 104, 104, 0.579);
+}
+.btn {
+  cursor: pointer;
+  border-radius: 0.3rem;
+  background-color: transparent;
+  border: 2px solid rgb(255, 250, 250);
+  font-size: 0.8rem;
+  margin: 5px;
+ 
+}
+
+.btn:hover {
+  background-color: white;
+}
+
+.ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin: auto;
+  gap: 15px;
+}
+
+.link{
+  color: rgb(255, 255, 255);
+  background-color: black;
+  cursor: pointer;
+}
+
+.current{
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+.link:hover {
+  background-color: white;
+  color: black;
+}
+
+.li{
+  cursor: pointer;
+  margin: 0 0.1rem;
+}
