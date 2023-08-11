@@ -20,36 +20,41 @@ export default function Pagination ({countriesPerPage, currentPage, setCurrentPa
     }
     
     return (
-        <nav className={style.container}>
-            {
-                currentPage === 1 ? null : <button
-                className= {style.btn}
-                onClick={onPreviousPage}
-              >
-                Previous
-              </button>
-            }
-        <ul className={style.ul}>
-          {pageNumbers.map((noPage) => (
-            <li key={noPage} className={style.li}>
-              <button
-                className={`${style.link} ${currentPage === noPage ? style.current : ''}`}
-                onClick={() => onSpecificPage(noPage)}
-              >
-                {noPage}
-              </button>
-            </li>
-          ))}
-        </ul>
+      <div>
         {
-            currentPage === pageNumbers.length ? null : <button
-            className={style.btn}
-            onClick={onNextPage}
-          >
-            Next
-          </button>
+          pageNumbers.length === 1 ? null : <nav className={style.container}>
+          {
+              currentPage === 1 ? null : <button
+              className= {style.btn}
+              onClick={onPreviousPage}
+            >
+              Previous
+            </button>
+          }
+      <ul className={style.ul}>
+        {pageNumbers.map((noPage) => (
+          <li key={noPage} className={style.li}>
+            <button
+              className={`${style.link} ${currentPage === noPage ? style.current : ''}`}
+              onClick={() => onSpecificPage(noPage)}
+            >
+              {noPage}
+            </button>
+          </li>
+        ))}
+      </ul>
+      {
+          currentPage === pageNumbers.length ? null : <button
+          className={style.btn}
+          onClick={onNextPage}
+        >
+          Next
+        </button>
+      }
+      
+    </nav>
         }
+      </div>
         
-      </nav>
     )
 }
