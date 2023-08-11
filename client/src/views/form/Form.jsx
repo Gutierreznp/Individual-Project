@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { postActivities } from "../../redux/actions";
 import validation from './validation';
-import './Form.module.css';
+import style from './Form.module.css';
 import Navbar from "../../components/navbar/navbar";
+import { getCountries } from "../../redux/actions";
 
 export default function Form () {
 
+    const allCountries = useSelector((state) => state.allCountries);
     const dispatch = useDispatch();
     const [activitie, setActivitie] = useState({
         name: '',
@@ -15,8 +17,8 @@ export default function Form () {
         season: '',
         countryId: ''
     })
-
     const [error, setError] = useState({});
+    const [formComplete, setFormComplete] = useState(false);
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -30,6 +32,7 @@ export default function Form () {
             ...activitie,
             [name]: newValue
         }))
+        setFormComplete(true);
     }
 
     const handleSubmit = (event) => {
@@ -42,11 +45,19 @@ export default function Form () {
             season: '',
             countryId: ''
         });
+        setFormComplete(false)
         window.alert('Activity created successfully')
     }
+
+    useEffect(() => {
+        dispatch(getCountries())
+    }, [dispatch])
+
     return (
-        <div>
-            <Navbar />
+        <>
+        <Navbar />
+            <div className={style.container}>
+            
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name: </label>
@@ -56,6 +67,7 @@ export default function Form () {
                 <div>
                     <label>Difficulty: </label>
                     <select onChange={handleChange} name = "difficulty">
+                    <option>None</option>
                     <option value="1">Very Easy</option>
                     <option value="2">Easy</option>
                     <option value="3">Moderate</option>
@@ -70,8 +82,9 @@ export default function Form () {
                     <p>{error.duration && error.duration}</p>
                 </div>
                 <div>
-                    <label>Season</label>
+                    <label>Season: </label>
                     <select onChange={handleChange} name = "season">
+                    <option>None</option>
                     <option value="Summer">Summer</option>
                     <option value="Winter">Winter</option>
                     <option value="Fall">Fall</option>
@@ -80,12 +93,18 @@ export default function Form () {
                     <p>{error.season && error.season}</p>
                 </div>
                 <div>
-                    <label>Country</label>
-                    <input name = "countryId" onChange = {handleChange} value = {activitie.countryId}/>
+                    <label>Country: </label>
+                    <select onChange={handleChange} name = "countryId">
+                    <option>None</option>
+                    {
+                        allCountries?.map((country) => <option key={country.id} value={country.id}>{country.name}</option>)
+                    }
+                    </select>
                     <p>{error.countryId && error.countryId}</p>
                 </div>
-                {Object.keys(error).length > 0 ? null : <button type="submit">Submit</button>}
+                {Object.keys(error).length > 0 || !formComplete ? null : <button type="submit">Submit</button>}
             </form>
-        </div>
+            </div>
+        </>
     )
 }
