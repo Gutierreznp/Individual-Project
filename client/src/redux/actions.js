@@ -5,6 +5,7 @@ export const GET_COUNTRIES_BY_NAME = 'GET_COUNTRIES_BY_NAME';
 export const POST_ACTIVITIES = 'POST_ACTIVITIES';
 export const FILTER = 'FILTER';
 export const ORDER = 'ORDER';
+// export const FILTER_ACTIVITIES = 'FILTER_ACTIVITIES';
 
 
 export const getCountries = () => {
@@ -53,3 +54,10 @@ export const orderCountries = (order) => {
         payload: order
     }
 }
+
+// export const filterActivities = (activitie) => {
+//     return {
+//         type: FILTER_ACTIVITIES,
+//         payload: activitie
+//     }
+// }

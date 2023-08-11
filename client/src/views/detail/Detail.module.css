@@ -1,0 +1,35 @@
+.container {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgb(60, 38, 8);
+}
+
+.container img {
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.container h2 {
+    margin: 10px 0;
+}
+
+.container h3, .container h4 {
+    margin: 5px 0;
+}
+
+.activities {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.activity {
+    color: rgb(60, 38, 8);
+    background-color: burlywood;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: left;
+}

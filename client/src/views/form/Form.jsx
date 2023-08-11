@@ -50,12 +50,18 @@ export default function Form () {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name: </label>
-                    <input name = "name" onChange = {handleChange} value = {activitie.name}/>
+                    <input name = "name" onChange = {handleChange} value = {activitie.name} placeholder = 'Name of the Activity..'/>
                     <p>{error.name && error.name}</p>
                 </div>
                 <div>
                     <label>Difficulty: </label>
-                    <input name = "difficulty" onChange = {handleChange} value = {activitie.difficulty}/>
+                    <select onChange={handleChange} name = "difficulty">
+                    <option value="1">Very Easy</option>
+                    <option value="2">Easy</option>
+                    <option value="3">Moderate</option>
+                    <option value="4">Difficult</option>
+                    <option value="5">Very Difficult</option>
+                    </select>
                     <p>{error.difficulty && error.difficulty}</p>
                 </div>
                 <div>
@@ -65,7 +71,12 @@ export default function Form () {
                 </div>
                 <div>
                     <label>Season</label>
-                    <input name = "season" onChange = {handleChange} value = {activitie.season}/>
+                    <select onChange={handleChange} name = "season">
+                    <option value="Summer">Summer</option>
+                    <option value="Winter">Winter</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Spring">Spring</option>
+                    </select>
                     <p>{error.season && error.season}</p>
                 </div>
                 <div>

@@ -25,7 +25,7 @@ export default function validate (input) {
         error.season = 'You must add a season';
     }
 
-    if(input.season !== 'Verano' && input.season !== 'Invierno' && input.season !== 'Otoño' && input.season !== 'Primavera') {
+    if(input.season !== 'Summer' && input.season !== 'Winter' && input.season !== 'Fall' && input.season !== 'Spring') {
         error.season = 'Not valid season';
     }
 

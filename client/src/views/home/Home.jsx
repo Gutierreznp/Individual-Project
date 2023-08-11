@@ -32,12 +32,16 @@ export default function Home () {
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(getCountriesByName(searchCountry));
-        setSearchCountry("");
+        setSearchCountry('');
     }
 
     const handleFilter = (event) => {
         dispatch(filter(event.target.value))
     }
+
+    // const handleFilterByActivitie = (event) => {
+    //     dispatch(filterActivities(event.target.value))
+    // }
     
     const handleOrder = (event) => {
         dispatch(orderCountries(event.target.value))
@@ -51,7 +55,7 @@ export default function Home () {
     return (
         <div className={style.home}>
             <Navbar handleChange = {handleChange} handleSubmit = {handleSubmit} />
-            <Filters handleFilter={handleFilter}/>
+            <Filters handleFilter={handleFilter} />
             <Order handleOrder={handleOrder}/>
             <Cards countries = {allCountries} lastIndex = {lastIndex} firstIndex = {firstIndex}/>
             <Pagination countriesPerPage = {countriesPerPage} currentPage = {currentPage} setCurrentPage = {setCurrentPage} totalCountries = {totalCountries}/>

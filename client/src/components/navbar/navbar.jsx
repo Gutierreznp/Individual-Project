@@ -13,15 +13,15 @@ export default function Navbar ({handleChange, handleSubmit}) {
                 <Link to='/home'>Home</Link>
             </button>
             {
-                location.pathname === '/form' ? <h1 className={style.title}>Create a new activity!</h1> : null
+                location.pathname === '/form' ? <h1 className={style.title}>Create a New Activity!</h1> : null
             }
             <button className={style.link}>
                 <Link to='/form'>Create Activities</Link>
             </button>
             {
                 location.pathname === '/home' && <form onChange = {(event) => handleChange(event)} >
-                <input className={style.input} type= 'search' placeholder="Buscar..." />
-                <button className={style.button} type="submit" onClick={handleSubmit}>Buscar</button>
+                <input className={style.input} type= 'search' placeholder="Search..." />
+                <button className={style.button} type="submit" onClick={handleSubmit}>Search</button>
             </form>
             }
         </div>
