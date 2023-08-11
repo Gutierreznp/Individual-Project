@@ -1,4 +1,3 @@
-import style from './App.css'
 import Home from './views/home/home';
 import Landing from './views/landing/landing';
 import Detail from './views/detail/Detail';
@@ -8,7 +7,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 
 function App() {
 
-  const location = useLocation();
   return (
     <div className={style.app}>
       <Routes>
