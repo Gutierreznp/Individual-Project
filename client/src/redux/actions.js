@@ -54,10 +54,3 @@ export const orderCountries = (order) => {
         payload: order
     }
 }
-
-// export const filterActivities = (activitie) => {
-//     return {
-//         type: FILTER_ACTIVITIES,
-//         payload: activitie
-//     }
-// }

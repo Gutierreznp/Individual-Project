@@ -48,14 +48,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allCountries: countriesCopy
             }
-        // case FILTER_ACTIVITIES:
-        //     const countriesFilter = state.copyCountries.filter(country => country.id === activities.countryId);
-        //     return {
-        //         ...state,
-        //         allCountries: action.payload === "ShowAll" ?
-        //         [...state.copyCountries]
-        //         : countriesFilter
-        //     }
         default:
             return {...state};
     }

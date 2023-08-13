@@ -2,7 +2,7 @@ import style from './filters.module.css';
 
 export default function Filters ({handleFilter}) {
     return (
-        <div>
+        <div className={style.container}>
             <p className={style.titulo}>Filter By Continent: </p>
             <select onChange={handleFilter}>
                 <option value="ShowAll">Show All</option>

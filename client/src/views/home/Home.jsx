@@ -36,14 +36,12 @@ export default function Home () {
     }
 
     const handleFilter = (event) => {
+        event.preventDefault()
         dispatch(filter(event.target.value))
     }
 
-    // const handleFilterByActivitie = (event) => {
-    //     dispatch(filterActivities(event.target.value))
-    // }
-    
     const handleOrder = (event) => {
+        event.preventDefault()
         dispatch(orderCountries(event.target.value))
         setAux(true);
     }
@@ -54,7 +52,7 @@ export default function Home () {
 
     return (
         <div className={style.home}>
-            <Navbar handleChange = {handleChange} handleSubmit = {handleSubmit} />
+            <Navbar handleChange = {handleChange} handleSubmit = {handleSubmit} searchCountry = {searchCountry}/>
             <Filters handleFilter={handleFilter} />
             <Order handleOrder={handleOrder}/>
             <Cards countries = {allCountries} lastIndex = {lastIndex} firstIndex = {firstIndex}/>

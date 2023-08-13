@@ -22,7 +22,7 @@ export default function Pagination ({countriesPerPage, currentPage, setCurrentPa
     return (
       <div>
         {
-          pageNumbers.length === 1 ? null : <nav className={style.container}>
+          pageNumbers.length === 1 ? setCurrentPage(1) : <nav className={style.container}>
           {
               currentPage === 1 ? null : <button
               className= {style.btn}

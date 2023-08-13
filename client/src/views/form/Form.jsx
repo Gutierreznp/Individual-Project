@@ -7,7 +7,6 @@ import Navbar from "../../components/navbar/navbar";
 import { getCountries } from "../../redux/actions";
 
 export default function Form () {
-
     const allCountries = useSelector((state) => state.allCountries);
     const dispatch = useDispatch();
     const [activitie, setActivitie] = useState({
@@ -97,7 +96,7 @@ export default function Form () {
                     <select onChange={handleChange} name = "countryId">
                     <option>None</option>
                     {
-                        allCountries?.map((country) => <option key={country.id} value={country.id}>{country.name}</option>)
+                        allCountries?.sort((a, b) => a.name.localeCompare(b.name)).map((country) => <option key={country.id} value={country.id}>{country.name}</option>)
                     }
                     </select>
                     <p>{error.countryId && error.countryId}</p>
