@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { filter, getCountries, getCountriesByName, orderCountries } from "../../redux/actions";
+import { filter, filterByActivitie, getActivities, getCountries, getCountriesByName, orderCountries } from "../../redux/actions";
 import Cards from '../../components/cards/cards';
 import { useState } from "react";
 import Navbar from "../../components/navbar/navbar";
@@ -14,6 +14,7 @@ export default function Home () {
 
     const dispatch = useDispatch();
     const allCountries = useSelector((state) => state.allCountries);
+    const allActivities = useSelector((state) => state.allActivities);
 
     const [searchCountry, setSearchCountry] = useState("");
     const [countriesPerPage, setCountriesPerPage] = useState(10);
@@ -40,6 +41,11 @@ export default function Home () {
         dispatch(filter(event.target.value))
     }
 
+    const handleFilterByActivity = (event) => {
+        event.preventDefault();
+        dispatch(filterByActivitie(event.target.value))
+    }
+
     const handleOrder = (event) => {
         event.preventDefault()
         dispatch(orderCountries(event.target.value))
@@ -48,12 +54,14 @@ export default function Home () {
 
     useEffect(() => {
         dispatch(getCountries())
+        dispatch(getActivities())
     }, [dispatch])
+
 
     return (
         <div className={style.home}>
             <Navbar handleChange = {handleChange} handleSubmit = {handleSubmit} searchCountry = {searchCountry}/>
-            <Filters handleFilter={handleFilter} />
+            <Filters handleFilter={handleFilter} handleFilterByActivity = {handleFilterByActivity} activities = {allActivities}/>
             <Order handleOrder={handleOrder}/>
             <Cards countries = {allCountries} lastIndex = {lastIndex} firstIndex = {firstIndex}/>
             <Pagination countriesPerPage = {countriesPerPage} currentPage = {currentPage} setCurrentPage = {setCurrentPage} totalCountries = {totalCountries}/>

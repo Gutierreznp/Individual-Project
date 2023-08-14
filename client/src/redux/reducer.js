@@ -1,9 +1,10 @@
-import { FILTER, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, ORDER, POST_ACTIVITIES } from "./actions";
+import { FILTER, FILTER_BY_ACTIVITY, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, ORDER, POST_ACTIVITIES } from "./actions";
 
 const initialState = {
     allCountries: [],
     copyCountries: [],
-    activities: []
+    activities: [],
+    allActivities: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -25,13 +26,22 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 activities: action.payload
             }
+        case GET_ACTIVITIES:
+            return {
+                ...state,
+                allActivities: action.payload
+            }
         case FILTER:
             const countriesFiltered = state.copyCountries.filter(country => country.region === action.payload);
             return {
                 ...state,
-                allCountries: action.payload === "ShowAll" ?
-                [...state.copyCountries]
-                : countriesFiltered
+                allCountries: countriesFiltered
+            }
+        case FILTER_BY_ACTIVITY:
+            const countriesByActivity = state.copyCountries.filter(country => country.Activities?.some(activitie => activitie.name === action.payload));
+            return {
+                ...state,
+                allCountries: countriesByActivity
             }
         case ORDER:
             const countriesCopy = [...state.allCountries];

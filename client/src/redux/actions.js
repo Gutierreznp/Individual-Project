@@ -5,7 +5,8 @@ export const GET_COUNTRIES_BY_NAME = 'GET_COUNTRIES_BY_NAME';
 export const POST_ACTIVITIES = 'POST_ACTIVITIES';
 export const FILTER = 'FILTER';
 export const ORDER = 'ORDER';
-// export const FILTER_ACTIVITIES = 'FILTER_ACTIVITIES';
+export const GET_ACTIVITIES = 'GET_ACTIVITIES';
+export const FILTER_BY_ACTIVITY = 'FILTER_BY_ACTIVITY';
 
 
 export const getCountries = () => {
@@ -52,5 +53,23 @@ export const orderCountries = (order) => {
     return {
         type: ORDER,
         payload: order
+    }
+}
+
+export const getActivities = () => {
+    return async (dispatch) => {
+        const response = await axios.get('http://localhost:3001/activities');
+        const { data } = response;
+        return dispatch({
+            type: GET_ACTIVITIES,
+            payload: data
+        })
+    }
+}
+
+export const filterByActivitie = (activitie) => {
+    return {
+        type: FILTER_BY_ACTIVITY,
+        payload: activitie
     }
 }
