@@ -13,6 +13,7 @@ import Order from "../../components/order/order";
 export default function Home () {
 
     const dispatch = useDispatch();
+
     const allCountries = useSelector((state) => state.allCountries);
     const allActivities = useSelector((state) => state.allActivities);
 
@@ -34,6 +35,10 @@ export default function Home () {
         event.preventDefault();
         dispatch(getCountriesByName(searchCountry));
         setSearchCountry('');
+    }
+    const handleSubmitAllCountries = (event) => {
+        event.preventDefault();
+        dispatch(getCountries())
     }
 
     const handleFilter = (event) => {
@@ -61,6 +66,7 @@ export default function Home () {
     return (
         <div className={style.home}>
             <Navbar handleChange = {handleChange} handleSubmit = {handleSubmit} searchCountry = {searchCountry}/>
+            <div className={style.buttoncontainer}><button className={style.button} onClick = {handleSubmitAllCountries}>All Countries</button></div>
             <Filters handleFilter={handleFilter} handleFilterByActivity = {handleFilterByActivity} activities = {allActivities}/>
             <Order handleOrder={handleOrder}/>
             <Cards countries = {allCountries} lastIndex = {lastIndex} firstIndex = {firstIndex}/>

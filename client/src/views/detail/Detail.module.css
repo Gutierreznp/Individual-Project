@@ -33,3 +33,8 @@
     width: 300px;
     text-align: left;
 }
+
+.activity:hover {
+    background-color: rgb(215, 159, 85);
+    transform: scale(1.05);
+}

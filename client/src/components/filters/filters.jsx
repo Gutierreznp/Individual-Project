@@ -14,14 +14,16 @@ export default function Filters ({handleFilter, handleFilterByActivity, activiti
 
     return (
         <div className={style.container}>
-            <p className={style.titulo}>Countries with an activity: </p>
+            <p className={style.titulo}>Filter By Activity: </p>
             <select onChange={handleFilterByActivity}>
+                <option value="Show All">Show All</option>
                 {
                     activitiesName.length > 0 ? activitiesName.map(name => <option value={name}>{name}</option>) : null
                 }
             </select>
             <p className={style.titulo}>Filter By Continent: </p>
             <select onChange={handleFilter}>
+                <option value="Show All">Show All</option>
                 <option value="Antarctic">Antarctic</option>
                 <option value="Americas">Americas</option>
                 <option value="Asia">Asia</option>

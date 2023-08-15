@@ -3,7 +3,7 @@ import style from './order.module.css';
 export default function Order ({handleOrder}) {
     return (
         <div className={style.container}>
-            <p className={style.titulo}>Order By Population: </p>
+            <p className={style.titulo}>Order By: </p>
             <select onChange={handleOrder}>
                 <option value="APopulation">Population(low) ↓</option>
                 <option value="DPopulation">Population(high) ↑</option>

@@ -20,7 +20,7 @@ export default function Detail () {
         });
         return setCountry({});
     }, [id]);
-    console.log(country);
+
     return (
         <div className={style.container}>
             <Navbar />

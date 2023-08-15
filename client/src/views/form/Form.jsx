@@ -8,7 +8,9 @@ import { getCountries } from "../../redux/actions";
 
 export default function Form () {
     const allCountries = useSelector((state) => state.allCountries);
+
     const dispatch = useDispatch();
+    
     const [activitie, setActivitie] = useState({
         name: '',
         difficulty: '',
@@ -66,7 +68,7 @@ export default function Form () {
                 <div>
                     <label>Difficulty: </label>
                     <select onChange={handleChange} name = "difficulty">
-                    <option>None</option>
+                    <option value="0">None</option>
                     <option value="1">Very Easy</option>
                     <option value="2">Easy</option>
                     <option value="3">Moderate</option>

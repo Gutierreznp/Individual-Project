@@ -4,7 +4,8 @@ const initialState = {
     allCountries: [],
     copyCountries: [],
     activities: [],
-    allActivities: []
+    allActivities: [],
+    filtered: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -32,13 +33,15 @@ const reducer = (state = initialState, action) => {
                 allActivities: action.payload
             }
         case FILTER:
-            const countriesFiltered = state.copyCountries.filter(country => country.region === action.payload);
+            const countriesFiltered = action.payload === "Show All" ? state.copyCountries
+            : state.copyCountries.filter(country => country.region === action.payload);
             return {
                 ...state,
                 allCountries: countriesFiltered
             }
         case FILTER_BY_ACTIVITY:
-            const countriesByActivity = state.copyCountries.filter(country => country.Activities?.some(activitie => activitie.name === action.payload));
+            const countriesByActivity = action.payload === "Show All" ? state.copyCountries.filter(country => country.Activities.length > 0)
+            : state.copyCountries.filter(country => country.Activities?.some(activitie => activitie.name === action.payload));
             return {
                 ...state,
                 allCountries: countriesByActivity
