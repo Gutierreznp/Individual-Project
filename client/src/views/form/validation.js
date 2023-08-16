@@ -5,9 +5,9 @@ export default function validate (input) {
     //     error.countryId = 'You must choose a country for this activity';
     // }
 
-    if(input.countryId.length !== 3) {
-        error.countryId = '*You must choose a country for this activity';
-    }
+    // if(!input.countryId.length) {
+    //     error.countryId = '*You must choose a country for this activity';
+    // }
 
     if(!input.name) {
         error.name = '*The activity must have a name';

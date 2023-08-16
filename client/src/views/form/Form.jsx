@@ -16,15 +16,22 @@ export default function Form () {
         difficulty: '',
         duration: '',
         season: '',
-        countryId: ''
+        countryId: []
     })
     const [error, setError] = useState({});
     const [formComplete, setFormComplete] = useState(false);
 
     const handleChange = (event) => {
         const {name, value} = event.target;
+        // const newValue = name === 'duration' || name === 'difficulty' ? parseFloat(value) : value;
+        let newValue = value;
 
-        const newValue = name === 'duration' || name === 'difficulty' ? parseFloat(value) : value;
+        if (name === 'name') {
+            newValue = value.toLowerCase();
+        } else if (name === 'duration' || name === 'difficulty') {
+            newValue = parseFloat(value);
+        }
+
         setActivitie({
             ...activitie,
             [name]: newValue
@@ -33,21 +40,25 @@ export default function Form () {
             ...activitie,
             [name]: newValue
         }))
-        setFormComplete(true);
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault()
+        // event.preventDefault();
         dispatch(postActivities(activitie));
         setActivitie({
             name: '',
             difficulty: '',
             duration: '',
             season: '',
-            countryId: ''
+            countryId: []
         });
         setFormComplete(false)
-        window.alert('Activity created successfully')
+        window.alert('Activity successfully created')
+    }
+
+    const handleCheck = (event) => {
+        setActivitie({...activitie, countryId: [...activitie.countryId, event.target.value]})
+        setFormComplete(true)
     }
 
     useEffect(() => {
@@ -95,12 +106,11 @@ export default function Form () {
                 </div>
                 <div>
                     <label>Country: </label>
-                    <select onChange={handleChange} name = "countryId">
-                    <option>None</option>
+                    <fieldset>
                     {
-                        allCountries?.sort((a, b) => a.name.localeCompare(b.name)).map((country) => <option key={country.id} value={country.id}>{country.name}</option>)
+                        allCountries?.sort((a, b) => a.name.localeCompare(b.name)).map((country) => <label className={style.check} key={country.id}><input type='checkbox' onChange={(e) => handleCheck(e)} name = {country.name} value={country.id}/> {country.name} </label>)
                     }
-                    </select>
+                    </fieldset>
                     <p>{error.countryId && error.countryId}</p>
                 </div>
                 {Object.keys(error).length > 0 || !formComplete ? null : <button type="submit">Submit</button>}

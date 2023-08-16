@@ -4,8 +4,7 @@ const initialState = {
     allCountries: [],
     copyCountries: [],
     activities: [],
-    allActivities: [],
-    filtered: []
+    allActivities: []
 }
 
 const reducer = (state = initialState, action) => {

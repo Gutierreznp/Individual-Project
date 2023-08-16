@@ -3,7 +3,7 @@ const { Country, Activity } = require('../db');
 module.exports = async (req, res) => {
     try {
         const { name, difficulty, duration, season, countryId} = req.body;
-        if(!name || !difficulty || !duration || !season || !countryId) return res.status(400).send('Falta informacion de la Actividad');
+        if(!name || !difficulty || !duration || !season || !countryId.length) return res.status(400).send('Falta informacion de la Actividad');
         const activity = new Activity({
             name,
             difficulty,
@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
             season
         })
         await activity.save();
-        if (countryId && countryId.length > 0) {
+        if (countryId.length > 0) {
             const countries = await Country.findAll({ where: { id: countryId }});
             await activity.setCountries(countries);   
         }

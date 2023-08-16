@@ -18,7 +18,6 @@ export default function Detail () {
                 window.alert('No existe este pais');
             }
         });
-        return setCountry({});
     }, [id]);
 
     return (

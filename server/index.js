@@ -15,7 +15,7 @@ server.listen(PORT, async () => {
         name: country.name.common,
         flag: country.flags.png,
         region: country.region,
-        capital: country.capital ? country.capital[0] : 'No encontre capital!',
+        capital: country.capital ? country.capital[0] : 'No tiene capital!',
         subregion: country.subregion,
         population: country.population
       }

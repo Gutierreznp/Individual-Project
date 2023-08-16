@@ -58,10 +58,11 @@ export default function Home () {
     }
 
     useEffect(() => {
-        dispatch(getCountries())
-        dispatch(getActivities())
+        if(!allCountries.length){
+            dispatch(getCountries())
+            dispatch(getActivities())  
+        }
     }, [dispatch])
-
 
     return (
         <div className={style.home}>
