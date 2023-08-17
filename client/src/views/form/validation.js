@@ -13,6 +13,10 @@ export default function validate (input) {
         error.name = '*The activity must have a name';
     }
 
+    if(input.name.length > 10) {
+        error.name = '*Must be less than 10 characters'
+    }
+
     // if(!input.difficulty) {
     //     error.difficulty = 'You must add a difficulty';
     // }

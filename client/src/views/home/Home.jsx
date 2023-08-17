@@ -58,10 +58,8 @@ export default function Home () {
     }
 
     useEffect(() => {
-        if(!allCountries.length){
             dispatch(getCountries())
-            dispatch(getActivities())  
-        }
+            dispatch(getActivities())
     }, [dispatch])
 
     return (

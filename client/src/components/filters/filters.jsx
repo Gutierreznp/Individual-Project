@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import style from './filters.module.css';
 
 export default function Filters ({handleFilter, handleFilterByActivity, activities}) {

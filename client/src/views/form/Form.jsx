@@ -19,7 +19,6 @@ export default function Form () {
         countryId: []
     })
     const [error, setError] = useState({});
-    const [formComplete, setFormComplete] = useState(false);
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -52,13 +51,18 @@ export default function Form () {
             season: '',
             countryId: []
         });
-        setFormComplete(false)
         window.alert('Activity successfully created')
     }
 
     const handleCheck = (event) => {
-        setActivitie({...activitie, countryId: [...activitie.countryId, event.target.value]})
-        setFormComplete(true)
+        const checkCountry = event.target.value;
+        if(activitie.countryId.includes(checkCountry)) {
+            const nuevaCountryId = activitie.countryId.filter(id => id !== checkCountry);
+            setActivitie({...activitie, countryId: nuevaCountryId})
+        } else {
+            setActivitie({...activitie, countryId: [...activitie.countryId, checkCountry]})
+        }
+
     }
 
     useEffect(() => {
@@ -108,12 +112,12 @@ export default function Form () {
                     <label>Country: </label>
                     <fieldset>
                     {
-                        allCountries?.sort((a, b) => a.name.localeCompare(b.name)).map((country) => <label className={style.check} key={country.id}><input type='checkbox' onChange={(e) => handleCheck(e)} name = {country.name} value={country.id}/> {country.name} </label>)
+                        allCountries?.sort((a, b) => a.name.localeCompare(b.name)).map((country) => <label className={style.check} key={country.id}><input type='checkbox' onChange={(e) => handleCheck(e)} name = {country.name} value={country.id} checked = {activitie.countryId.includes(country.id)}/> {country.name} </label>)
                     }
                     </fieldset>
                     <p>{error.countryId && error.countryId}</p>
                 </div>
-                {Object.keys(error).length > 0 || !formComplete ? null : <button type="submit">Submit</button>}
+                {Object.keys(error).length > 0 || activitie.countryId.length === 0? null : <button type="submit">Submit</button>}
             </form>
             </div>
         </>
