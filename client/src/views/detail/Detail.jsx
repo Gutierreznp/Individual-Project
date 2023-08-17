@@ -3,10 +3,14 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import style from './Detail.module.css';
 import Navbar from "../../components/navbar/navbar";
+import { useDispatch } from "react-redux";
+import { deleteActivityById } from "../../redux/actions";
 
 export default function Detail () {
 
     const {id} = useParams();
+
+    const dispatch = useDispatch();
 
     const [country, setCountry] = useState({});
 
@@ -19,6 +23,12 @@ export default function Detail () {
             }
         });
     }, [id]);
+
+    const handleDelete = (event) => {
+        event.preventDefault();
+        const { value } = event.target;
+        dispatch(deleteActivityById(value, id));
+    }
 
     return (
         <div className={style.container}>
@@ -35,6 +45,7 @@ export default function Detail () {
             {
                 country.Activities?.map((act) => {
                     return (<div className={style.activity}>
+                        <button value={act.id} onClick = {handleDelete}>Delete</button>
                         <h3>Name: {act.name}</h3>
                         <p>Difficulty(1-5): {act.difficulty}</p>
                         <p>Duration: {act.duration}hs.</p>

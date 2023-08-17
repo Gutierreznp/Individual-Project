@@ -1,4 +1,4 @@
-import { FILTER, FILTER_BY_ACTIVITY, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, ORDER, POST_ACTIVITIES } from "./actions";
+import { DELETE_ACTIVITY_BY_ID, FILTER, FILTER_BY_ACTIVITY, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, ORDER, POST_ACTIVITIES } from "./actions";
 
 const initialState = {
     allCountries: [],
@@ -59,6 +59,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 allCountries: countriesCopy
+            }
+        case DELETE_ACTIVITY_BY_ID:
+            return {
+                ...state,
+                activities: action.payload
             }
         default:
             return {...state};

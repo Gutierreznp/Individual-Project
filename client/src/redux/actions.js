@@ -7,6 +7,7 @@ export const FILTER = 'FILTER';
 export const ORDER = 'ORDER';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const FILTER_BY_ACTIVITY = 'FILTER_BY_ACTIVITY';
+export const DELETE_ACTIVITY_BY_ID = 'DELETE_ACTIVITY_BY_ID';
 
 
 export const getCountries = () => {
@@ -73,3 +74,16 @@ export const filterByActivitie = (activitie) => {
         payload: activitie
     }
 }
+
+export const deleteActivityById = (idActivity, idPais) => {
+    return async (dispatch) => {
+        const response = await axios.delete(`http://localhost:3001/countries/${idPais}/${idActivity}`);
+        const { message } = response;
+        return dispatch({
+            type: DELETE_ACTIVITY_BY_ID,
+            payload: message
+        })
+    }
+}
+
+
