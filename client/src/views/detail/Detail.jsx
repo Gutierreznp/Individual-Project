@@ -3,26 +3,29 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import style from './Detail.module.css';
 import Navbar from "../../components/navbar/navbar";
-import { useDispatch } from "react-redux";
-import { deleteActivityById } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteActivityById, getCountryById } from "../../redux/actions";
 
 export default function Detail () {
 
     const {id} = useParams();
 
+    const country = useSelector((state) => state.countryById)
+
     const dispatch = useDispatch();
 
-    const [country, setCountry] = useState({});
+    // const [country, setCountry] = useState({});
 
     useEffect(() => {
-        axios(`http://localhost:3001/countries/${id}`).then(({data}) => {
-            if(data.name) {
-                setCountry(data);
-            } else {
-                window.alert('No existe este pais');
-            }
-        });
-    }, [id]);
+        // axios(`http://localhost:3001/countries/${id}`).then(({data}) => {
+        //     if(data.name) {
+        //         setCountry(data);
+        //     } else {
+        //         window.alert('No existe este pais');
+        //     }
+        // });
+        dispatch(getCountryById(id))
+    }, [dispatch]);
 
     const handleDelete = (event) => {
         event.preventDefault();

@@ -15,7 +15,9 @@ module.exports = async (req, res) => {
 
         await countryActivity.destroy();
 
-        return res.status(200).json({message: 'Activity successfully deleted'});
+        const newCountry = await Country.findByPk(idPais, {include: Activity})
+
+        return res.status(200).json(newCountry);
 
     } catch (error) {
 

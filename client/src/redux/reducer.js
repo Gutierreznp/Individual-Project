@@ -1,10 +1,11 @@
-import { DELETE_ACTIVITY_BY_ID, FILTER, FILTER_BY_ACTIVITY, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, ORDER, POST_ACTIVITIES } from "./actions";
+import { DELETE_ACTIVITY_BY_ID, FILTER, FILTER_BY_ACTIVITY, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER, POST_ACTIVITIES } from "./actions";
 
 const initialState = {
     allCountries: [],
     copyCountries: [],
     activities: [],
-    allActivities: []
+    allActivities: [],
+    countryById: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -63,7 +64,12 @@ const reducer = (state = initialState, action) => {
         case DELETE_ACTIVITY_BY_ID:
             return {
                 ...state,
-                activities: action.payload
+                countryById: action.payload
+            }
+        case GET_COUNTRY_BY_ID:
+            return {
+                ...state,
+                countryById: action.payload
             }
         default:
             return {...state};
